@@ -1601,7 +1601,7 @@
     (property "Datasheet" "~" (id 3) (at 28.575 160.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Digikey" "https://www.digikey.com/en/products/detail/sullins-connector-solutions/GEC36SBSN-M89/862247" (id 4) (at 28.575 160.02 0)
+    (property "Digikey" "S1113E-20-ND" (id 4) (at 28.575 160.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid d8a0468e-dc72-4a5a-b9c1-f154d004c44f))
