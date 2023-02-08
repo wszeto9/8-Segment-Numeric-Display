@@ -2,7 +2,12 @@
 
   (uuid c0daff40-07f4-42da-a2ed-2de560ade509)
 
-  (paper "A4")
+  (paper "USLetter")
+
+  (title_block
+    (date "2023-02-08")
+    (rev "A01")
+  )
 
   (lib_symbols
     (symbol "Device:C_Polarized_Small" (pin_numbers hide) (pin_names (offset 0.254) hide) (in_bom yes) (on_board yes)
