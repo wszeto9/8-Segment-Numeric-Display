@@ -894,7 +894,7 @@
     (property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm2596.pdf" (id 3) (at 127 64.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Digikey" "4518-LM2596S-ADJCT-ND" (id 4) (at 127 64.77 0)
+    (property "Digikey" "https://www.amazon.com/gp/product/B0B63GQDJW/" (id 4) (at 127 64.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "MFGPN" "LM2596S-ADJ" (id 5) (at 127 64.77 0)

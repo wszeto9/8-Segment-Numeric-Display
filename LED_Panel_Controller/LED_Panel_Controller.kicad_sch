@@ -2231,7 +2231,7 @@
     (property "Datasheet" "~" (id 3) (at 135.89 165.735 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Digikey" "https://www.amazon.com/Yohii-Female-Header-2-54mm-Connector/dp/B07P1R9CGT/ref=sr_1_2?crid=24L21ACA4OHBU&keywords=female+header+right+angle&qid=1675869501&sprefix=female+header+right+angle%2Caps%2C90&sr=8-2" (id 4) (at 135.89 165.735 0)
+    (property "Digikey" "https://www.amazon.com/Yohii-Female-Header-2-54mm-Connector/dp/B07P1R9CGT/" (id 4) (at 135.89 165.735 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 0bc93c98-2196-4e81-95c1-7a97f7b67280))
