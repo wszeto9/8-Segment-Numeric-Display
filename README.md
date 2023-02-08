@@ -4,7 +4,14 @@ A 10W/digit numeric display to show numbers in any room.
 
 ![AssembledView](Documentation/AssembledView.jpg)
 
-[Interactive BOM for Display](https://htmlpreview.github.io/?https://raw.githubusercontent.com/wszeto9/8-Segment-Numeric-Display/main/LED_Panel/bom/ibom.html)
+[Interactive BOM for LED Display](https://htmlpreview.github.io/?https://raw.githubusercontent.com/wszeto9/8-Segment-Numeric-Display/main/Documentation/ibom_LED_Panel.html)
+
+[Interactive BOM for LED Display Controller](https://htmlpreview.github.io/?https://raw.githubusercontent.com/wszeto9/8-Segment-Numeric-Display/main/Documentation/ibom_LED_Panel_Controller.html)
+
+[Schematic for LED Display](https://github.com/wszeto9/8-Segment-Numeric-Display/blob/main/Documentation/LED_Panel_Sch.pdf)
+
+[Schematic for LED Display Controller](https://github.com/wszeto9/8-Segment-Numeric-Display/blob/main/Documentation/LED_Panel_Controller_Sch.pdf)
+
 
 The display is a 65mm x 102mm single layer aluminum PCB. It has a 1x20 SMT male header in order to connect a driver board. The display requires active cooling for duty cycles above 50%. 
 
