@@ -3005,7 +3005,7 @@
       (reference "#PWR0135") (unit 1) (value "GND") (footprint "")
     )
     (path "/313e4871-7551-48b8-94c3-da45ba36d836/79ce9060-4d70-4461-bc38-bb6e5fc7d299"
-      (reference "C1") (unit 1) (value "120uF/25V") (footprint "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm")
+      (reference "C1") (unit 1) (value "120uF/35V") (footprint "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm")
     )
     (path "/313e4871-7551-48b8-94c3-da45ba36d836/52c6a715-a54c-4b1b-b05e-456b7ccd134a"
       (reference "C2") (unit 1) (value "0402,100nF,50V,X7R ") (footprint "C_0402_1005Metric")
