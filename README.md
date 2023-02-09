@@ -72,8 +72,8 @@ In addition,
 **Digikey Parts**
 |Quantity|Digikey PN| Description|
 |--|--|--|
-|1|732-8632-1-ND|120uF/25V Capacitor|
-|1|732-8798-1-ND|330uF/16V Capacitor|
+|1|1189-3657-ND|120uF/35V Capacitor|
+|1|399-ESK337M016AE3AA-ND|330uF/16V Capacitor|
 |1|F3375CT-ND|2A Polyfuse|
 |1|455-1849-ND|JST PA 1x04 RA Housing|
 |1|455-2753-ND|JST PA 1x04 Connector|
