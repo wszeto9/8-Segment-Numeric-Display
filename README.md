@@ -1,8 +1,14 @@
 # 8 Segment Numeric DIsplay
 
-A 10W/digit numeric display to show numbers in any room.
+A 10W/digit numeric display to show numbers in any room. Designed for MIT 2.007's Spring gameboard. 
 
 ![AssembledView](Documentation/AssembledView.jpg)
+
+![2.007 Display](Documentation/display_2007.png)
+Display showing 2.007
+
+![xxxx Display](Documentation/display_xxxx.png)
+Display showing xx xx
 
 [Interactive BOM for LED Display](https://htmlpreview.github.io/?https://raw.githubusercontent.com/wszeto9/8-Segment-Numeric-Display/main/Documentation/ibom_LED_Panel.html)
 
