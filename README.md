@@ -21,7 +21,7 @@ Display showing xx xx
 
 The display is a 65mm x 102mm single layer aluminum PCB. It has a 1x20 SMT male header in order to connect a driver board. The display requires active cooling for duty cycles above 50%. 
 
-The driver is a 75mm x 32mm double layer FR4 PCB. It relies on a 74HC595 shift register to drive a chain of displays using a single data stream. The driving microcontroller can send 3.3V or 5V logic. The logic level is set by the reference voltage on the input. The driver has an onboard buck converter to create the drive voltage of the display. The board can receive 7-16VDC (Peak current draw is 10W/Vin). 
+The driver is a 75mm x 32mm double layer FR4 PCB. It relies on a 74HC595 shift register to drive a chain of displays using a single data stream. The driving microcontroller can send 3.3V or 5V logic. The logic level is set by the reference voltage on the input. The driver has an onboard buck converter to create the drive voltage of the display. The board can receive 7-28VDC (Peak current draw is 10W/Vin). 
  
 # Driving Logic
 
