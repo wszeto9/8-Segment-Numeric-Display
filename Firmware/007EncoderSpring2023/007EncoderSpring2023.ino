@@ -19,13 +19,13 @@ Servo servoOuter;
 #define servoInnerPin 5
 #define servoOuterPin 4
 
-#define servoInnerEngagedPos 30
-#define servoInnerDisengagedPos 80
+#define servoInnerEngagedPos 90
+#define servoInnerDisengagedPos 130
 #define servoInnerDelayms 400
 
-#define servoOuterEngagedPos 35
-#define servoOuterDisengagedPos 85
-#define servoOuterDelayms 325
+#define servoOuterEngagedPos 110
+#define servoOuterDisengagedPos 0
+#define servoOuterDelayms 550
 
 
 #define DEBUG_MODE 1
@@ -75,7 +75,7 @@ Initialize all variables associated with the shift register display
  */
 
 
-#define isOnLeftSide 0 //whether the display is on the left or right half of the gameboard
+#define isOnLeftSide 1 //whether the display is on the left or right half of the gameboard
 
 #define MAX_BRIGHTNESS 25 //out of 255
 
@@ -99,6 +99,10 @@ uint8_t displayData[] ={
 0b01111110,
 0b01100110
 };
+
+
+#define buttonUpper A1
+#define buttonLower A5
 
 /*
 #######################################################
@@ -186,6 +190,9 @@ void DisplayNumber(int numberToDisplay){
 }
 
 void setup() {
+  pinMode(buttonLower, INPUT_PULLUP);
+  pinMode(buttonUpper, INPUT_PULLUP);
+  
   pinMode(7, OUTPUT);
   digitalWrite(7, HIGH);
   pinMode(encoderOuter, INPUT_PULLUP);
@@ -221,14 +228,31 @@ void loop() {
   //sets velocity to 0 if no encoder ticks were detected in the past second
   if(micros() - previousEncoderTimeOuter > 1000000){
     currentBucketOuter = 0;
-    OuterAverageVelocity = 0;  
-  } 
-  if(micros() - previousEncoderTimeInner > 1000000){
-    currentBucketInner = 0;
-    InnerAverageVelocity = 0;  
+    if(OuterAverageVelocity > 1000){
+    OuterAverageVelocity = 0;
+    } 
+    if(OuterAverageVelocity > 0){
+    OuterAverageVelocity = OuterAverageVelocity -1;
+    }  
+    for(int k = 0; k < AveragingSamples; k++){
+      OuterVelocities[k] = 0;
+    }
   } 
   
-  if((millis() - newBucketTimeOuter > 5000) && currentBucketOuter > 0){ //if it's been at a bucket for 5s and the bucket is nonzero
+  if(micros() - previousEncoderTimeInner > 1000000){
+    currentBucketInner = 0;
+    if(InnerAverageVelocity > 1000){
+      InnerAverageVelocity = 0;
+    }
+    if(InnerAverageVelocity > 0){
+      InnerAverageVelocity = InnerAverageVelocity -1;
+    }
+    for(int k = 0; k < AveragingSamples; k++){
+      InnerVelocities[k] = 0;
+    }  
+  } 
+
+  if(!digitalRead(buttonLower) || ((millis() - newBucketTimeOuter > 5000) && currentBucketOuter > 0)){ //if it's been at a bucket for 5s and the bucket is nonzero
     newBucketTimeOuter = millis();//reset 5s time reference
     if(maxBucketOuter < currentBucketOuter){ //update the max bucket if needed
       maxBucketOuter = currentBucketOuter;
@@ -236,10 +260,10 @@ void loop() {
     
     servoOuter.write(servoOuterDisengagedPos);
     delay(servoOuterDelayms);
-    servoOuter.write(servoOuterEngagedPos);    
+    servoOuter.write(servoOuterEngagedPos);   
   }
 
-  if((millis() - newBucketTimeInner > 5000) && currentBucketInner > 0){ //if it's been at a bucket for 5s and the bucket is nonzero
+  if(!digitalRead(buttonUpper) || ((millis() - newBucketTimeInner > 5000) && currentBucketInner > 0)){ //if it's been at a bucket for 5s and the bucket is nonzero
     newBucketTimeInner = millis();//reset 5s time reference
     if(maxBucketInner < currentBucketInner){ //update the max bucket if needed
       maxBucketInner = currentBucketInner;
@@ -247,7 +271,7 @@ void loop() {
     
     servoInner.write(servoInnerDisengagedPos);
     delay(servoInnerDelayms);
-    servoInner.write(servoOuterEngagedPos);    
+    servoInner.write(servoInnerEngagedPos);    
   }
   
   if(DEBUG_MODE){
@@ -265,7 +289,7 @@ void loop() {
     Serial.println(pointBinsInner[maxBucketInner]);
   }
 
-  
+
   if(isOnLeftSide){
     DisplayNumber(pointBinsOuter[maxBucketOuter] * 100 + pointBinsInner[maxBucketInner]);
   }
@@ -273,5 +297,6 @@ void loop() {
     DisplayNumber(pointBinsInner[maxBucketInner] * 100 + pointBinsOuter[maxBucketOuter]);
   }
   
-  //analogWrite(nOE, 253 - 4 * (pointsInner + pointsOuter));
+  analogWrite(nOE, 253 - (OuterAverageVelocity + InnerAverageVelocity));
+  
 }
