@@ -19,6 +19,14 @@ Servo servoOuter;
 #define servoInnerPin 5
 #define servoOuterPin 4
 
+//change based on gameboard color
+//#define blueGameboard 1
+//d#define redGameboard 1
+//#define greenGameboard 1
+#define yellowGameboard 1
+
+
+#ifdef blueGameboard
 #define servoInnerEngagedPos 90
 #define servoInnerDisengagedPos 130
 #define servoInnerDelayms 400
@@ -26,6 +34,48 @@ Servo servoOuter;
 #define servoOuterEngagedPos 110
 #define servoOuterDisengagedPos 0
 #define servoOuterDelayms 550
+
+#define isOnLeftSide 0
+#endif
+
+
+#ifdef redGameboard
+#define servoInnerEngagedPos 120
+#define servoInnerDisengagedPos 70
+#define servoInnerDelayms 550
+
+#define servoOuterEngagedPos 110
+#define servoOuterDisengagedPos 0
+#define servoOuterDelayms 550
+
+#define isOnLeftSide 1
+#endif
+
+
+#ifdef greenGameboard
+#define servoInnerEngagedPos 100
+#define servoInnerDisengagedPos 160
+#define servoInnerDelayms 550
+
+#define servoOuterEngagedPos 110
+#define servoOuterDisengagedPos 20
+#define servoOuterDelayms 590
+
+#define isOnLeftSide 0
+#endif
+
+
+#ifdef yellowGameboard
+#define servoInnerEngagedPos 90
+#define servoInnerDisengagedPos 35
+#define servoInnerDelayms 550
+
+#define servoOuterEngagedPos 110
+#define servoOuterDisengagedPos 180
+#define servoOuterDelayms 650
+
+#define isOnLeftSide 1
+#endif
 
 
 #define DEBUG_MODE 1
@@ -74,9 +124,6 @@ Initialize all variables associated with the shift register display
 ###################################################################
  */
 
-
-#define isOnLeftSide 1 //whether the display is on the left or right half of the gameboard
-
 #define MAX_BRIGHTNESS 25 //out of 255
 
 #define SER 12
@@ -84,6 +131,7 @@ Initialize all variables associated with the shift register display
 #define RCLK 10
 #define SRCLK 9
 #define nCLR 8
+#define nOE_RIGHT 6
 
 
 //displayData[number] will return the data to display the number
@@ -203,6 +251,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(encoderInner), CalculateEncoderTimeInner, RISING);
 
   pinMode(nOE, OUTPUT);
+  pinMode(nOE_RIGHT, OUTPUT);
   pinMode(nCLR, OUTPUT);
   pinMode(SER, OUTPUT);
   pinMode(RCLK, OUTPUT);
@@ -228,7 +277,7 @@ void loop() {
   //sets velocity to 0 if no encoder ticks were detected in the past second
   if(micros() - previousEncoderTimeOuter > 1000000){
     currentBucketOuter = 0;
-    if(OuterAverageVelocity > 1000){
+    if(OuterAverageVelocity > 300){
     OuterAverageVelocity = 0;
     } 
     if(OuterAverageVelocity > 0){
@@ -289,7 +338,7 @@ void loop() {
     Serial.println(pointBinsInner[maxBucketInner]);
   }
 
-
+  
   if(isOnLeftSide){
     DisplayNumber(pointBinsOuter[maxBucketOuter] * 100 + pointBinsInner[maxBucketInner]);
   }
@@ -297,6 +346,18 @@ void loop() {
     DisplayNumber(pointBinsInner[maxBucketInner] * 100 + pointBinsOuter[maxBucketOuter]);
   }
   
-  analogWrite(nOE, 253 - (OuterAverageVelocity + InnerAverageVelocity));
+  //for (int i = 0; i <= 9; i++) {
+    //DisplayNumber(1111 * i);
+    //delay(100);
+ // }
+ 
+  if(isOnLeftSide){
+    analogWrite(nOE_RIGHT, 253 -InnerAverageVelocity * InnerAverageVelocity /256);
+    analogWrite(nOE, 253 - OuterAverageVelocity * OuterAverageVelocity /256);
+  }
+  else{
+    analogWrite(nOE, 253 -InnerAverageVelocity * InnerAverageVelocity/ 256);
+    analogWrite(nOE_RIGHT, 253 - OuterAverageVelocity*OuterAverageVelocity / 256);
+  }
   
 }
