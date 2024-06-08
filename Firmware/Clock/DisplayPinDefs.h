@@ -1,0 +1,19 @@
+#define SER 16
+#define nOE 18
+#define RCLK 33
+#define SRCLK 35
+#define nCLR 37
+#define DISPLAYVDD 39
+
+uint8_t displayData[] ={ 
+0b10111011,
+0b00000011,
+0b00111010,
+0b00011110,
+0b01000110,
+0b01011100,
+0b00101110,
+0b00110010,
+0b01111110,
+0b01011110
+};
